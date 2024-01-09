@@ -1,0 +1,37 @@
+<header>
+  <nav class="border-gray-200 p-4 lg:px-6 bg-gray-400">
+    <div
+      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+    >
+      <a routerLink="/" class="flex items-center">
+        <img
+          src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png"
+          class="mr-3 h-6 sm:h-9"
+          alt="Flowbite Logo"
+        />
+        <span
+          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+          >Angular</span
+        >
+      </a>
+
+      <div
+        class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+        id="mobile-menu-2"
+      >
+        <ul
+          class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+        >
+          <li *ngFor="let item of menu">
+            <a
+              routerLink="{{ item.path }}"
+              class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+              aria-current="page"
+              >{{ item.name }}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
