@@ -2,3 +2,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+  text-align: center;
+  margin-top: 30px;
+}
+.button button {
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 60%;
+  background: #ebeb12;
+  transition: all 0.15s linear;
+}
+.button button:hover {
+  transform: scale(1.1);
+}
+input,
+textarea,
+select {
+  border: 2px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+}

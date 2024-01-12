@@ -1,0 +1,36 @@
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['required']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không được bỏ trống
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['min']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không được nhỏ hơn {{field.errors?.["min"].min}}
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['max']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không được lớn hơn {{field.errors?.["max"].max}}
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['minlength']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không được ít hơn {{field.errors?.["minlength"].requiredLength}} ký
+  tự
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['maxlength']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không được nhiều hơn
+  {{field.errors?.["maxlength"].requiredLength}} ký tự
+</span>

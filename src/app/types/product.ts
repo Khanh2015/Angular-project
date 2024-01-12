@@ -10,3 +10,9 @@ export type ProductType = {
     count: number;
   };
 };
+
+// export type ProductDetailType = ProductType & {
+//   relatedProducts: ProductType[];
+// };
+
+export type CreateProductType = Omit<ProductType, 'id' | 'rating'>;

@@ -1,8 +1,9 @@
-<div class="container">
-  <header>HEADER</header>
+<div class="grid grid-cols-[17%_83%]">
   <div>
-    <aside>ASIDE ADMIN</aside>
-    <main><router-outlet></router-outlet></main>
+    <app-sidebar></app-sidebar>
   </div>
-  <footer>FOOTER</footer>
+  <main>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </main>
 </div>
