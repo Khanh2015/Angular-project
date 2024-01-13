@@ -12,8 +12,8 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent implements OnInit {
   menu = [
     { name: 'Home', path: '/' },
-    { name: 'Login', path: '/login' },
-    { name: 'Sign Up', path: '/signup' },
+    { name: 'Login', path: 'auth/login' },
+    { name: 'Sign Up', path: 'auth/signup' },
     { name: 'Admin', path: '/admin' },
   ];
   constructor() {}

@@ -7,6 +7,7 @@ import { AdminComponent } from './layouts/admin/admin.component';
 import { ProductsComponent } from './pages/admin/products/products.component';
 import { AddproductComponent } from './pages/admin/addproduct/addproduct.component';
 import { ProductDetailComponent } from './pages/client/product-detail/product-detail.component';
+import { canActivate } from './guards/can-access-admin.guard';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,22 @@ export const routes: Routes = [
         path: 'product/:id',
         component: ProductDetailComponent,
       },
+    ],
+  },
+  {
+    path: 'admin',
+    canActivate: [canActivate],
+    component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
+      { path: 'products', component: ProductsComponent },
+      { path: 'products/add', component: AddproductComponent },
+      { path: 'products/update/:id', component: AddproductComponent },
+    ],
+  },
+  {
+    path: 'auth',
+    children: [
       {
         path: 'login',
         component: LoginComponent,
@@ -29,16 +46,6 @@ export const routes: Routes = [
         path: 'signup',
         component: SignupComponent,
       },
-    ],
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      { path: '', redirectTo: 'products', pathMatch: 'full' },
-      { path: 'products', component: ProductsComponent },
-      { path: 'products/add', component: AddproductComponent },
-      { path: 'products/update/:id', component: AddproductComponent },
     ],
   },
 ];
