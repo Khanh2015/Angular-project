@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
         localStorage.setItem('loggedInUser', JSON.stringify(response));
-        Swal.fire('Success...', 'Đăng ký thành công', 'success');
+        Swal.fire('Success...', 'Đăng nhập thành công', 'success');
         this.router.navigateByUrl('/admin');
       },
       (error) => {

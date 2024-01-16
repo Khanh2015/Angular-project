@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ShowValidateComponent } from '../../../components/admin/show-validate/show-validate.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -62,7 +63,10 @@ export class SignupComponent {
       return;
     }
     this.authService.signUp(this.signUpForm.value).subscribe(
-      (response) => this.router.navigateByUrl('auth/login'),
+      (response) => {
+        Swal.fire('Success...', 'Đăng ký thành công', 'success');
+        this.router.navigateByUrl('auth/login');
+      },
       (error) => {
         if (error.error === 'Email already exists') {
           return this.signUpForm.controls['email'].setErrors({ exists: true });
