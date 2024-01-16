@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -7,30 +7,58 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
+import { ShowValidateComponent } from '../../../components/admin/show-validate/show-validate.component';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    ShowValidateComponent,
+    CommonModule,
+  ],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.email),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', Validators.required),
     });
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    this.authService
-      .login(this.loginForm.value)
-      .subscribe((data) =>
-        localStorage.setItem('loggedInUser', JSON.stringify(data))
-      );
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.authService.login(this.loginForm.value).subscribe(
+      (response) => {
+        localStorage.setItem('loggedInUser', JSON.stringify(response));
+        Swal.fire('Success...', 'Đăng ký thành công', 'success');
+        this.router.navigateByUrl('/admin');
+      },
+      (error) => {
+        console.log(error);
+        if (error.error === 'Cannot find user') {
+          return this.loginForm.controls['email'].setErrors({ notFound: true });
+        }
+
+        if (
+          error.error === 'Password is too short' ||
+          error.error === 'Incorrect password'
+        ) {
+          return this.loginForm.controls['password'].setErrors({
+            incorrectPassword: true,
+          });
+        }
+      }
+    );
   }
 }

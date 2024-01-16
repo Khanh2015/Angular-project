@@ -34,3 +34,38 @@
   {{ key }} không được nhiều hơn
   {{field.errors?.["maxlength"].requiredLength}} ký tự
 </span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['email']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không đúng định dạng
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['notFound']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} chưa được đăng ký
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['incorrectPassword']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không chính xác
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['passwordMismatch']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} không trùng khớp
+</span>
+
+<span
+  *ngIf="(field.dirty || field.touched) && field.errors?.['exists']"
+  class="text-red-500 text-sm"
+>
+  {{ key }} đã được đăng ký
+</span>

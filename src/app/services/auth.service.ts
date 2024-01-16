@@ -13,4 +13,8 @@ export class AuthService {
   login(data: LoginType): Observable<LoginResponseType> {
     return this.http.post<LoginResponseType>(`${this.apiUrl}/login`, data);
   }
+
+  signUp(data: LoginType): Observable<LoginResponseType> {
+    return this.http.post<LoginResponseType>(`${this.apiUrl}/signup`, data);
+  }
 }

@@ -238,6 +238,24 @@
       "id": 1,
       "email": "admin@gmail.com",
       "password": "$2a$12$Fjl/cZgQmvaizjzdgoa.OuMw2lYh2d5.UZ7HPsPVvO7R7HwN2QViG"
+    },
+    {
+      "email": "khanh@gmail.com",
+      "password": "$2a$10$pQg.Mj5LpoMF.PRb7OrZ1eJcMLA7SPELSfO./Ruk1qmj0.CAxmqsW",
+      "repassword": "a",
+      "id": 2
+    },
+    {
+      "email": "khanh2@gmail.com",
+      "password": "$2a$10$qbTEHrm86EZl8heUkkYg..m20shwSi2NwnarHQM8l3Ul0BqBYch1q",
+      "repassword": "khanh",
+      "id": 3
+    },
+    {
+      "email": "khanh3@gmail.com",
+      "password": "$2a$10$VxMKtJJR5Mq5KexQO2EK2.pH5h78QuWLHBpQ9pfckxZs2tHUG3b/e",
+      "repassword": "khanh",
+      "id": 4
     }
   ]
 }

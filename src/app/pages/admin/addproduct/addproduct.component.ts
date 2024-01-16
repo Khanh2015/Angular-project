@@ -5,6 +5,7 @@ import { ShowValidateComponent } from '../../../components/admin/show-validate/s
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   standalone: true,
@@ -65,10 +66,13 @@ export class AddproductComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.productForm.invalid) {
+      return;
+    }
     const data = this.productForm.value;
     if (!this.id) {
       return this.productService.createProduct(data).subscribe((data) => {
-        alert('Thêm sản phẩm thành công');
+        Swal.fire('Success...', 'Thêm sản phẩm thành công', 'success');
         this.router.navigateByUrl('admin/products');
       });
     }
@@ -76,7 +80,7 @@ export class AddproductComponent implements OnInit {
     return this.productService
       .updateProduct(this.id, data)
       .subscribe((data) => {
-        alert('Cập nhật sản phẩm thành công');
+        Swal.fire('Success...', 'Cập nhật sản phẩm thành công', 'success');
         this.router.navigateByUrl('admin/products');
       });
   }

@@ -30,28 +30,31 @@ export class ProductDetailComponent implements OnInit {
   //   this.productService.getProduct(this.id).subscribe((data) => {
   //     this.product = data;
   //     this.category = data.category;
-  //   });
-  //   this.productService.getProducts().subscribe((data) => {
-  //     console.log(this.category); // undefined
-  //     this.relatedProducts = data.filter(
-  //       (item) => item.category === this.category && String(item.id) !== this.id
-  //     );
-  //     console.log(this.relatedProducts); // []
+
+  //     this.productService.getProducts().subscribe((products) => {
+  //       const result = products.filter(
+  //         (item) =>
+  //           item.category === this.category && String(item.id) !== this.id
+  //       );
+  //       this.relatedProducts = result;
+  //     });
   //   });
   // }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.productService.getProduct(this.id).subscribe((data) => {
-      this.product = data;
-      this.category = data.category;
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
+      this.productService.getProduct(this.id).subscribe((data) => {
+        this.product = data;
+        this.category = data.category;
 
-      this.productService.getProducts().subscribe((products) => {
-        const result = products.filter(
-          (item) =>
-            item.category === this.category && String(item.id) !== this.id
-        );
-        this.relatedProducts = result;
+        this.productService.getProducts().subscribe((products) => {
+          const result = products.filter(
+            (item) =>
+              item.category === this.category && String(item.id) !== this.id
+          );
+          this.relatedProducts = result;
+        });
       });
     });
   }
