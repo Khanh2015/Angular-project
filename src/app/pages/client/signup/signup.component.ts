@@ -58,6 +58,9 @@ export class SignupComponent {
   }
 
   onSubmit() {
+    if (this.signUpForm.invalid) {
+      return;
+    }
     this.authService.signUp(this.signUpForm.value).subscribe(
       (response) => this.router.navigateByUrl('auth/login'),
       (error) => {
