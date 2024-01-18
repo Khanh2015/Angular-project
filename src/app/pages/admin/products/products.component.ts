@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  onDelete(id: number) {
+  onDelete(id: string) {
     if (id) {
       Swal.fire({
         title: 'Xóa sản phẩm?',

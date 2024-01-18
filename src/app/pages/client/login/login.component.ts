@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.invalid) {
+      Swal.fire('NO !', 'Vui lòng nhập dữ liệu đủ các trường', 'warning');
       return;
     }
     this.authService.login(this.loginForm.value).subscribe(
@@ -46,14 +47,11 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        if (error.error === 'Cannot find user') {
+        if (error.error.message === 'Email chưa được đăng ký') {
           return this.loginForm.controls['email'].setErrors({ notFound: true });
         }
 
-        if (
-          error.error === 'Password is too short' ||
-          error.error === 'Incorrect password'
-        ) {
+        if (error.error.message === 'Mật khẩu không đúng') {
           return this.loginForm.controls['password'].setErrors({
             incorrectPassword: true,
           });

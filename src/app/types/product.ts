@@ -1,18 +1,14 @@
 export type ProductType = {
-  id: number;
+  _id: string;
   title: string;
   price: number;
   description: string;
   category: string;
   image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
 };
 
 // export type ProductDetailType = ProductType & {
 //   relatedProducts: ProductType[];
 // };
 
-export type CreateProductType = Omit<ProductType, 'id' | 'rating'>;
+export type CreateProductType = Omit<ProductType, 'id'>;

@@ -50,8 +50,7 @@ export class ProductDetailComponent implements OnInit {
 
         this.productService.getProducts().subscribe((products) => {
           const result = products.filter(
-            (item) =>
-              item.category === this.category && String(item.id) !== this.id
+            (item) => item.category === this.category && item._id !== this.id
           );
           this.relatedProducts = result;
         });

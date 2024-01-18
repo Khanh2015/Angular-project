@@ -40,7 +40,7 @@ export class SignupComponent {
       new FormControl('', [Validators.required, Validators.minLength(4)])
     );
     this.signUpForm.addControl(
-      'repassword',
+      'confirmPassword',
       new FormControl('', [
         Validators.required,
         this.checkConfirmPassword.bind(this),
@@ -60,6 +60,7 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.signUpForm.invalid) {
+      Swal.fire('NO !', 'Vui lòng nhập dữ liệu đủ các trường', 'warning');
       return;
     }
     this.authService.signUp(this.signUpForm.value).subscribe(
@@ -68,7 +69,7 @@ export class SignupComponent {
         this.router.navigateByUrl('auth/login');
       },
       (error) => {
-        if (error.error === 'Email already exists') {
+        if (error.error.message === 'Email đã được đăng ký') {
           return this.signUpForm.controls['email'].setErrors({ exists: true });
         }
       }

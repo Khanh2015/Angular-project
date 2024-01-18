@@ -7,9 +7,7 @@ import { CreateProductType, ProductType } from '../types/product';
   providedIn: 'root',
 })
 export class ProductService {
-  apiUrl = 'http://localhost:3000/products';
-
-  // http = inject(HttpClient);
+  apiUrl = 'https://angular-database.vercel.app/products';
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +19,7 @@ export class ProductService {
     return this.http.get<ProductType>(`${this.apiUrl}/${id}`);
   }
 
-  deleteProduct(id: number) {
+  deleteProduct(id: string) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 

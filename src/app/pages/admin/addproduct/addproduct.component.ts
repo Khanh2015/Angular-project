@@ -1,3 +1,4 @@
+import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CategoryType } from '../../../types/category';
 
 @Component({
   standalone: true,
@@ -17,10 +19,13 @@ import Swal from 'sweetalert2';
 export class AddproductComponent implements OnInit {
   id!: string;
 
+  categories: CategoryType[] = [];
+
   productForm: FormGroup;
 
   constructor(
     private productService: ProductService,
+    private categoryService: CategoryService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -38,7 +43,7 @@ export class AddproductComponent implements OnInit {
       ]),
       category: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        // Validators.minLength(3),
         // Validators.maxLength(255),
       ]),
       image: new FormControl('', [
@@ -50,6 +55,10 @@ export class AddproductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.categoryService
+      .getCategories()
+      .subscribe((data) => (this.categories = data));
+
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.productService.getProduct(this.id).subscribe((data) => {
@@ -67,6 +76,7 @@ export class AddproductComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.invalid) {
+      Swal.fire('NO !', 'Vui lòng nhập dữ liệu đủ các trường', 'warning');
       return;
     }
     const data = this.productForm.value;

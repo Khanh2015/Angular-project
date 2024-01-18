@@ -34,13 +34,13 @@
         <td class="p-4">${{ product.price }}</td>
         <td class="p-4">
           <a
-            [routerLink]="['update', product.id]"
+            [routerLink]="['update', product._id]"
             class="text-lg font-bold text-blue-600 dark:text-blue-500 hover:underline mr-5"
           >
             Edit
           </a>
           <button
-            (click)="onDelete(product.id)"
+            (click)="onDelete(product._id)"
             class="text-lg font-bold text-red-600 dark:text-red-500 hover:underline"
           >
             Delete

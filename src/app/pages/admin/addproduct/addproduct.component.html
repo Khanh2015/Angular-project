@@ -5,12 +5,21 @@
       <div class="">
         <label htmlFor=""> Danh mục <span class="text-red-500">*</span> </label>
         <br />
-        <input
+        <!-- <input
           type="text"
           class="mt-2"
           placeholder="Nhập vào tên danh mục"
           formControlName="category"
-        />
+        /> -->
+        <select formControlName="category" class="mt-2">
+          <option disabled value="">Chọn 1 danh mục</option>
+          <option
+            *ngFor="let category of categories"
+            value="{{ category.name }}"
+          >
+            {{ category.name }}
+          </option>
+        </select>
         <app-show-validate
           [field]="productForm.get('category')"
           key="Tên danh mục"
@@ -88,7 +97,6 @@
     </div>
 
     <button
-      [disabled]="!productForm.valid"
       class="disabled:cursor-not-allowed disabled:opacity-50 text-center font-bold text-xl bg-slate-500 text-white py-5 w-full mt-4 rounded-xl hover:opacity-80 duration-200"
     >
       {{ id ? "Cập nhật" : "Thêm" }} sản phẩm
