@@ -8,6 +8,10 @@ import { ProductsComponent } from './pages/admin/products/products.component';
 import { AddproductComponent } from './pages/admin/addproduct/addproduct.component';
 import { ProductDetailComponent } from './pages/client/product-detail/product-detail.component';
 import { canActivate } from './guards/can-access-admin.guard';
+import { CategoriesComponent } from './pages/admin/categories/categories.component';
+import { CategoryFormComponent } from './pages/admin/category-form/category-form.component';
+import { UsersComponent } from './pages/admin/users/users.component';
+import { UserFormComponent } from './pages/admin/user-form/user-form.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +37,12 @@ export const routes: Routes = [
       { path: 'products', component: ProductsComponent },
       { path: 'products/add', component: AddproductComponent },
       { path: 'products/update/:id', component: AddproductComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'categories/add', component: CategoryFormComponent },
+      { path: 'categories/update/:id', component: CategoryFormComponent },
+      { path: 'users', component: UsersComponent },
+      // { path: 'users/add', component: CategoryFormComponent },
+      { path: 'users/update/:id', component: UserFormComponent },
     ],
   },
   {

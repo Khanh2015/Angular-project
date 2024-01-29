@@ -1,0 +1,29 @@
+<div class="flex flex-col justify-center items-center m-10">
+  <h1 class="text-3xl font-bold">{{ id ? "Cập nhật" : "Thêm" }} danh mục</h1>
+  <form class="mt-6 w-[60%]" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="">
+      <div class="">
+        <label htmlFor="">
+          Tên danh mục <span class="text-red-500">*</span>
+        </label>
+        <br />
+        <input
+          type="text"
+          class="mt-2"
+          placeholder="Nhập vào tên danh mục"
+          formControlName="name"
+        />
+        <app-show-validate
+          [field]="categoryForm.get('name')"
+          key="Tên danh mục"
+        ></app-show-validate>
+      </div>
+    </div>
+
+    <button
+      class="disabled:cursor-not-allowed disabled:opacity-50 text-center font-bold text-xl bg-slate-500 text-white py-5 w-full mt-4 rounded-xl hover:opacity-80 duration-200"
+    >
+      {{ id ? "Cập nhật" : "Thêm" }} danh mục
+    </button>
+  </form>
+</div>
