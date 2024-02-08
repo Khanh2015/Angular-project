@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoryType, CreateCategoryType } from '../types/category';
+import { getAccessToken } from '../ultilities';
 
 @Injectable({
   providedIn: 'root',
@@ -20,17 +21,29 @@ export class CategoryService {
   }
 
   deleteCategory(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
   }
 
   createCategory(data: CreateCategoryType): Observable<CategoryType> {
-    return this.http.post<CategoryType>(this.apiUrl, data);
+    return this.http.post<CategoryType>(this.apiUrl, data, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
   }
 
   updateCategory(
     id: string,
     data: CreateCategoryType
   ): Observable<CategoryType> {
-    return this.http.put<CategoryType>(`${this.apiUrl}/${id}`, data);
+    return this.http.put<CategoryType>(`${this.apiUrl}/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
   }
 }

@@ -10,6 +10,7 @@ import { ShowValidateComponent } from '../../../components/admin/show-validate/s
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { checkAdminRole } from '../../../ultilities';
 
 @Component({
   selector: 'app-category-form',
@@ -35,8 +36,6 @@ export class CategoryFormComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.categoryService.getCategory(this.id).subscribe((data) => {
-        console.log(this.categoryForm.status);
-        console.log(data);
         this.categoryForm.patchValue({
           name: data.name,
         });
@@ -49,6 +48,7 @@ export class CategoryFormComponent implements OnInit {
       Swal.fire('NO !', 'Vui lòng nhập dữ liệu đủ các trường', 'warning');
       return;
     }
+    if (!checkAdminRole()) return;
     const data = this.categoryForm.value;
     if (!this.id) {
       return this.categoryService.createCategory(data).subscribe((data) => {

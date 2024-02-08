@@ -7,7 +7,8 @@
     >
       <tr>
         <th scope="col" class="px-6 py-3">#</th>
-        <th scope="col" class="px-6 py-3">Category name</th>
+        <th scope="col" class="px-6 py-3">User id</th>
+        <th scope="col" class="px-6 py-3">Email</th>
         <th scope="col" class="px-6 py-3">Action</th>
       </tr>
     </thead>
@@ -18,10 +19,10 @@
       >
         <td class="p-4">{{ index + 1 }}</td>
         <td class="p-4 max-w-[150px]">
-          {{ user.email }}
+          {{ user._id }}
         </td>
         <td class="p-4 max-w-[150px]">
-          {{ user.password }}
+          {{ user.email }}
         </td>
         <td class="p-4">
           <a
@@ -31,6 +32,7 @@
             Edit
           </a>
           <button
+            (click)="onDelete(user._id)"
             class="text-lg font-bold text-red-600 dark:text-red-500 hover:underline"
           >
             Delete

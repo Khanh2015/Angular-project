@@ -1,0 +1,33 @@
+<div class="flex flex-col justify-center items-center m-10">
+  <h1 class="text-3xl font-bold">Cập nhật tài khoản</h1>
+  <form
+    class="mt-6 w-[60%]"
+    [formGroup]="updateUserForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="">
+      <div class="">
+        <label htmlFor="">
+          Email tài khoản <span class="text-red-500">*</span>
+        </label>
+        <br />
+        <input
+          type="text"
+          class="mt-2"
+          placeholder="Nhập vào email tài khoản"
+          formControlName="email"
+        />
+        <app-show-validate
+          [field]="updateUserForm.get('email')"
+          key="Email tài khoản"
+        ></app-show-validate>
+      </div>
+    </div>
+
+    <button
+      class="disabled:cursor-not-allowed disabled:opacity-50 text-center font-bold text-xl bg-slate-500 text-white py-5 w-full mt-4 rounded-xl hover:opacity-80 duration-200"
+    >
+      Cập nhật tài khoản
+    </button>
+  </form>
+</div>

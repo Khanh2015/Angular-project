@@ -1,23 +1,60 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <form action="" class="w-[40%] flex items-center gap-4 m-5">
-    <input
-      [(ngModel)]="productName"
-      (input)="handleInputChange()"
-      [ngModelOptions]="{ standalone: true }"
-      type="text"
-      placeholder="Enter name product..."
-    />
-    <select
-      [(ngModel)]="selectedCategory"
-      (change)="handleInputChange()"
-      [ngModelOptions]="{ standalone: true }"
+  <form class="mx-20 my-10" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <label
+      for="default-search"
+      class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+      >Search</label
     >
-      <option value="">Tất cả danh mục</option>
-      <option *ngFor="let category of categories" value="{{ category.name }}">
-        {{ category.name }}
-      </option>
-    </select>
+    <div class="relative">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+      >
+        <svg
+          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 20"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+          />
+        </svg>
+      </div>
+      <input
+        type="search"
+        id="default-search"
+        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter product name..."
+        required
+        formControlName="keyword"
+      />
+      <button
+        type="submit"
+        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Search
+      </button>
+    </div>
   </form>
+  <div class="grid grid-cols-6 gap-5 p-5 mb-10 bg-slate-200">
+    <div
+      class="flex items-center"
+      *ngFor="let category of categories; let i = index"
+    >
+      {{ category.name }}
+      <input
+        class="w-5"
+        type="checkbox"
+        (change)="onCategoryChange(i, $event)"
+      />
+    </div>
+  </div>
+
   <table
     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
   >
@@ -36,7 +73,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let product of displayedProducts; let index = index"
+        *ngFor="let product of products; let index = index"
         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
       >
         <td class="p-4">{{ index + 1 }}</td>
@@ -68,4 +105,69 @@
       </tr>
     </tbody>
   </table>
+  <!-- Pagination -->
+
+  <div *ngIf="totalPages > 1 && !isFiltering" class="flex justify-center my-10">
+    <nav aria-label="Page navigation example">
+      <ul class="flex items-center -space-x-px h-10 text-base">
+        <li>
+          <a
+            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            (click)="changePage(currentPage - 1)"
+            [class.disabled]="currentPage === 1"
+          >
+            <span class="sr-only">Previous</span>
+            <svg
+              class="w-3 h-3 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 1 1 5l4 4"
+              />
+            </svg>
+          </a>
+        </li>
+        <li *ngFor="let page of [].constructor(totalPages); let i = index">
+          <a
+            (click)="changePage(i + 1)"
+            [class.active]="currentPage === i + 1"
+            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >{{ i + 1 }}</a
+          >
+        </li>
+
+        <li>
+          <a
+            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            (click)="changePage(currentPage + 1)"
+            [class.disabled]="currentPage === totalPages"
+          >
+            <span class="sr-only">Next</span>
+            <svg
+              class="w-3 h-3 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

@@ -7,6 +7,7 @@ export type LoginResponseType = {
   accessToken: string;
   user: {
     email: string;
+    role: string;
     _id: string;
   };
 };
@@ -20,4 +21,5 @@ export type SignUpType = {
 export type SignUpResponseType = {
   _id: string;
   email: string;
+  role: string;
 };

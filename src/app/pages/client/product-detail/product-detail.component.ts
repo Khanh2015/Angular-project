@@ -25,22 +25,6 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService
   ) {}
 
-  // ngOnInit() {
-  //   this.id = this.route.snapshot.params['id'];
-  //   this.productService.getProduct(this.id).subscribe((data) => {
-  //     this.product = data;
-  //     this.category = data.category;
-
-  //     this.productService.getProducts().subscribe((products) => {
-  //       const result = products.filter(
-  //         (item) =>
-  //           item.category === this.category && String(item.id) !== this.id
-  //       );
-  //       this.relatedProducts = result;
-  //     });
-  //   });
-  // }
-
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.id = params['id'];

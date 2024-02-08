@@ -1,3 +1,61 @@
-<p>
-  user-form works!
-</p>
+<div class="flex flex-col justify-center items-center m-10">
+  <h1 class="text-3xl font-bold">Thêm tài khoản</h1>
+  <form class="mt-6 w-[60%]" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="">
+      <div class="">
+        <label htmlFor="">
+          Email tài khoản <span class="text-red-500">*</span>
+        </label>
+        <br />
+        <input
+          type="text"
+          class="mt-2"
+          placeholder="Nhập vào Email tài khoản"
+          formControlName="email"
+        />
+        <app-show-validate
+          [field]="signUpForm.get('email')"
+          key="Email tài khoản"
+        ></app-show-validate>
+      </div>
+
+      <div class="">
+        <label htmlFor=""> Mật khẩu <span class="text-red-500">*</span> </label>
+        <br />
+        <input
+          type="password"
+          class="mt-2"
+          placeholder="Nhập vào Mật khẩu"
+          formControlName="password"
+        />
+        <app-show-validate
+          [field]="signUpForm.get('password')"
+          key="Mật khẩu"
+        ></app-show-validate>
+      </div>
+
+      <div class="">
+        <label htmlFor="">
+          Xác nhận mật khẩu <span class="text-red-500">*</span>
+        </label>
+        <br />
+        <input
+          type="password"
+          class="mt-2"
+          placeholder="Nhập vào xác nhận mật khẩu"
+          formControlName="confirmPassword"
+        />
+        <app-show-validate
+          [field]="signUpForm.get('confirmPassword')"
+          key="Xác nhận mật khẩu"
+        ></app-show-validate>
+      </div>
+    </div>
+
+    <button
+      class="disabled:cursor-not-allowed disabled:opacity-50 text-center font-bold text-xl bg-slate-500 text-white py-5 w-full mt-4 rounded-xl hover:opacity-80 duration-200"
+    >
+      Thêm tài khoản
+    </button>
+  </form>
+</div>

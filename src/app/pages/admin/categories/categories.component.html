@@ -1,6 +1,6 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table
-    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    class="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400"
   >
     <thead
       class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
@@ -8,6 +8,7 @@
       <tr>
         <th scope="col" class="px-6 py-3">#</th>
         <th scope="col" class="px-6 py-3">Category name</th>
+        <th scope="col" class="px-6 py-3">Product quantity</th>
         <th scope="col" class="px-6 py-3">Action</th>
       </tr>
     </thead>
@@ -19,6 +20,16 @@
         <td class="p-4">{{ index + 1 }}</td>
         <td class="p-4 max-w-[150px] text-black font-bold">
           {{ category.name }}
+        </td>
+        <td class="p-4 max-w-[150px]">
+          <a
+            class="hover:underline hover:decoration-red-500"
+            routerLink="/admin/category/{{ category.name }}"
+            ><span class="text-red-500 text-lg font-bold">{{
+              category.quantity
+            }}</span>
+            sản phẩm</a
+          >
         </td>
         <td class="p-4">
           <a

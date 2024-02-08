@@ -12,7 +12,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'https://angular-database.vercel.app/auth';
+  apiUrl = 'http://localhost:8000/auth/';
+  // apiUrl = 'https://angular-database.vercel.app/auth';
   constructor(private http: HttpClient) {}
 
   login(data: LoginType): Observable<LoginResponseType> {

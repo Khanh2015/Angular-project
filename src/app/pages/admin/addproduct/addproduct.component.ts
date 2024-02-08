@@ -8,6 +8,7 @@ import { ProductService } from '../../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CategoryType } from '../../../types/category';
+import { checkAdminRole } from '../../../ultilities';
 
 @Component({
   standalone: true,
@@ -79,6 +80,7 @@ export class AddproductComponent implements OnInit {
       Swal.fire('NO !', 'Vui lòng nhập dữ liệu đủ các trường', 'warning');
       return;
     }
+    if (!checkAdminRole()) return;
     const data = this.productForm.value;
     if (!this.id) {
       return this.productService.createProduct(data).subscribe((data) => {

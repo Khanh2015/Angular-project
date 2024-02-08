@@ -12,6 +12,7 @@ import { CategoriesComponent } from './pages/admin/categories/categories.compone
 import { CategoryFormComponent } from './pages/admin/category-form/category-form.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { UserFormComponent } from './pages/admin/user-form/user-form.component';
+import { UserUpdateFormComponent } from './pages/admin/user-update-form/user-update-form.component';
 
 export const routes: Routes = [
   {
@@ -37,12 +38,14 @@ export const routes: Routes = [
       { path: 'products', component: ProductsComponent },
       { path: 'products/add', component: AddproductComponent },
       { path: 'products/update/:id', component: AddproductComponent },
+      { path: 'products/search', component: ProductsComponent },
       { path: 'categories', component: CategoriesComponent },
+      { path: 'category/:name', component: ProductsComponent },
       { path: 'categories/add', component: CategoryFormComponent },
       { path: 'categories/update/:id', component: CategoryFormComponent },
       { path: 'users', component: UsersComponent },
-      // { path: 'users/add', component: CategoryFormComponent },
-      { path: 'users/update/:id', component: UserFormComponent },
+      { path: 'users/add', component: UserFormComponent },
+      { path: 'users/update/:id', component: UserUpdateFormComponent },
     ],
   },
   {
