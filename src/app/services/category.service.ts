@@ -8,7 +8,7 @@ import { getAccessToken } from '../ultilities';
   providedIn: 'root',
 })
 export class CategoryService {
-  apiUrl = 'http://localhost:8000/categories';
+  apiUrl = 'https://angular-database.vercel.app/categories';
 
   constructor(private http: HttpClient) {}
 

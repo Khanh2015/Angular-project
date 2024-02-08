@@ -8,7 +8,7 @@ import { getAccessToken } from '../ultilities';
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'http://localhost:8000/users';
+  apiUrl = 'https://angular-database.vercel.app/users';
 
   constructor(private http: HttpClient) {}
 

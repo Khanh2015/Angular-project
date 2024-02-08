@@ -33,7 +33,7 @@ export class ProductService {
 
   searchProducts(keyword: string): Observable<ProductType[]> {
     return this.http.get<ProductType[]>(
-      `http://localhost:8000/products/search?query=${keyword}`
+      `https://angular-database.vercel.app/products/search?query=${keyword}`
     );
   }
 
