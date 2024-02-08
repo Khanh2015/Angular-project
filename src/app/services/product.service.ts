@@ -22,9 +22,12 @@ export class ProductService {
     params = params.append('_page', page.toString());
     params = params.append('_limit', limit.toString());
 
-    return this.http.get<any>('http://localhost:8000/products/paginate', {
-      params: params,
-    });
+    return this.http.get<any>(
+      'https://angular-database.vercel.app/products/paginate',
+      {
+        params: params,
+      }
+    );
   }
 
   getProduct(id: string): Observable<ProductType> {
