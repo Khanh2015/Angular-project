@@ -9,7 +9,7 @@ import { getAccessToken } from '../ultilities';
 })
 export class ProductService {
   // apiUrl = 'https://angular-database.vercel.app/products';
-  apiUrl = 'http://localhost:8000/products';
+  apiUrl = 'https://angular-database.vercel.app/products';
 
   constructor(private http: HttpClient) {}
 
